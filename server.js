@@ -3,8 +3,7 @@ console.log('🛠️ Backend is starting...');
 const express = require('express');
 const mongoose = require('mongoose');
 const cors = require('cors');
-const path = require('path');
-require('dotenv').config({ path: path.join(__dirname, '.env') });
+require('dotenv').config();
 
 const resourceRoutes = require('./routes/resourceRoutes');
 const donorRoutes = require('./routes/donorRoutes');
@@ -12,7 +11,9 @@ const feedbackRoutes = require('./routes/feedbackRoutes');
 
 const app = express();
 
-app.use(cors());
+app.use(cors({
+  origin: '*' // or 'https://your-frontend.vercel.app'
+}));
 app.use(express.json());
 
 // Health check endpoint
@@ -29,15 +30,6 @@ const MONGO_URI = process.env.MONGO_URI;
 if (!MONGO_URI) {
   console.error('❌ MONGO_URI is missing. Set it in backend/.env');
   process.exit(1);
-}
-
-// Serve frontend build in production
-if (process.env.NODE_ENV === 'production') {
-  const clientBuildPath = path.join(__dirname, '..', 'frontend', 'build');
-  app.use(express.static(clientBuildPath));
-  app.get('*', (req, res) => {
-    res.sendFile(path.join(clientBuildPath, 'index.html'));
-  });
 }
 
 // Connect to MongoDB and start server
