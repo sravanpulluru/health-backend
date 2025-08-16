@@ -1,0 +1,38 @@
+[
+  {
+    "name": "Apollo Hospital",
+    "type": "Hospital",
+    "description": "24x7 emergency",
+    "location": "Hyderabad",
+    "lat": 17.414,
+    "lng": 78.448,
+    "contact": "040-123456"
+  },
+  {
+    "name": "City Clinic",
+    "type": "Clinic",
+    "description": "General physician",
+    "location": "Hyderabad",
+    "lat": 17.44,
+    "lng": 78.49,
+    "contact": "040-654321"
+  },
+  {
+    "name": "MediCare Pharmacy",
+    "type": "Pharmacy",
+    "description": "Open late",
+    "location": "Delhi",
+    "lat": 28.61,
+    "lng": 77.21,
+    "contact": "011-223344"
+  },
+  {
+    "name": "Fortis Hospital",
+    "type": "Hospital",
+    "description": "Cardiac care",
+    "location": "Delhi",
+    "lat": 28.59,
+    "lng": 77.25,
+    "contact": "011-998877"
+  }
+]

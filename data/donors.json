@@ -1,0 +1,32 @@
+[
+  {
+    "name": "Ravi Kumar",
+    "bloodGroup": "A+",
+    "location": "Hyderabad",
+    "contact": "9999990001"
+  },
+  {
+    "name": "Sneha R",
+    "bloodGroup": "O-",
+    "location": "Hyderabad",
+    "contact": "9999990002"
+  },
+  {
+    "name": "Arjun",
+    "bloodGroup": "A+",
+    "location": "Bengaluru",
+    "contact": "9999990003"
+  },
+  {
+    "name": "Priya",
+    "bloodGroup": "B+",
+    "location": "Hyderabad",
+    "contact": "9999990004"
+  },
+  {
+    "name": "Rahul",
+    "bloodGroup": "O+",
+    "location": "Bengaluru",
+    "contact": "9999990005"
+  }
+]
