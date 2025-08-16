@@ -11,10 +11,7 @@ const feedbackRoutes = require('./routes/feedbackRoutes');
 require('dotenv').config();
 
 const app = express();
-
-app.use(cors({
-  origin: '*' // or 'https://your-frontend.vercel.app'
-}));
+app.use(cors({ origin: '*' })); // Or put your Vercel frontend URL
 app.use(express.json());
 
 // Health check endpoint
@@ -29,19 +26,18 @@ const PORT = process.env.PORT || 5000;
 const MONGO_URI = process.env.MONGO_URI;
 
 if (!MONGO_URI) {
-  console.error('❌ MONGO_URI is missing. Set it in backend/.env');
+  console.error('❌ MONGO_URI is missing.');
   process.exit(1);
 }
 
-// Connect to MongoDB and start server
 mongoose.connect(MONGO_URI)
   .then(() => {
     console.log('✅ Connected to MongoDB');
     app.listen(PORT, () => {
-      console.log(`🚀 Server running on port ${PORT} (${process.env.NODE_ENV || 'development'} mode)`);
+      console.log(`🚀 Server running on port ${PORT}`);
     });
   })
-  .catch((err) => {
+  .catch(err => {
     console.error('❌ MongoDB connection error:', err.message);
     process.exit(1);
   });
