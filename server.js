@@ -3,11 +3,12 @@ console.log('🛠️ Backend is starting...');
 const express = require('express');
 const mongoose = require('mongoose');
 const cors = require('cors');
-require('dotenv').config();
 
 const resourceRoutes = require('./routes/resourceRoutes');
 const donorRoutes = require('./routes/donorRoutes');
 const feedbackRoutes = require('./routes/feedbackRoutes');
+
+require('dotenv').config();
 
 const app = express();
 
