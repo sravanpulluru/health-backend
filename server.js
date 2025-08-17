@@ -11,12 +11,25 @@ import feedbackRoutes from "./routes/feedbackRoutes.js";
 dotenv.config();
 const app = express();
 
-// Middleware
+// ✅ CORS setup
+const allowedOrigins = [
+  "http://localhost:3000",                  // local dev
+  "https://health-frontend-usd8.vercel.app" // your Vercel frontend
+];
+
 app.use(cors({
-  origin: "https://health-frontend-usd8.vercel.app", // ✅ allow your Vercel frontend
+  origin: (origin, callback) => {
+    if (!origin || allowedOrigins.includes(origin)) {
+      callback(null, true);
+    } else {
+      callback(new Error("❌ Not allowed by CORS"));
+    }
+  },
   methods: ["GET", "POST", "PUT", "DELETE"],
   credentials: true
 }));
+
+// Middleware
 app.use(express.json());
 
 // Routes
@@ -31,9 +44,12 @@ app.get("/", (req, res) => {
 });
 
 // Connect MongoDB
-mongoose.connect(process.env.MONGO_URI)
-  .then(() => console.log("MongoDB Connected"))
-  .catch(err => console.error(err));
+mongoose.connect(process.env.MONGO_URI, {
+  useNewUrlParser: true,
+  useUnifiedTopology: true
+})
+  .then(() => console.log("✅ MongoDB Connected"))
+  .catch(err => console.error("❌ MongoDB Error:", err));
 
 // PORT
 const PORT = process.env.PORT || 5000;
