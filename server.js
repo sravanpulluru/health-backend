@@ -6,6 +6,8 @@ import cors from "cors";
 import resourceRoutes from "./routes/resourceRoutes.js";
 import donorRoutes from "./routes/donorRoutes.js";
 import authRoutes from "./routes/authRoutes.js";
+import feedbackRoutes from "./routes/feedbackRoutes.js";
+
 
 dotenv.config();
 const app = express();
@@ -18,6 +20,7 @@ app.use(express.json());
 app.use("/api/resources", resourceRoutes);
 app.use("/api/donors", donorRoutes);
 app.use("/api/auth", authRoutes);
+app.use("/api/feedback", feedbackRoutes);
 
 // Default route
 app.get("/", (req, res) => {
