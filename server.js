@@ -8,12 +8,15 @@ import donorRoutes from "./routes/donorRoutes.js";
 import authRoutes from "./routes/authRoutes.js";
 import feedbackRoutes from "./routes/feedbackRoutes.js";
 
-
 dotenv.config();
 const app = express();
 
 // Middleware
-app.use(cors());
+app.use(cors({
+  origin: "https://health-frontend-usd8.vercel.app", // ✅ allow your Vercel frontend
+  methods: ["GET", "POST", "PUT", "DELETE"],
+  credentials: true
+}));
 app.use(express.json());
 
 // Routes
