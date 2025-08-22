@@ -11,15 +11,16 @@ import feedbackRoutes from "./routes/feedbackRoutes.js";
 dotenv.config();
 const app = express();
 
-// ✅ CORS setup
-const allowedOrigins = [
-  "http://localhost:3000",                  // local dev
-  "https://health-frontend-usd8.vercel.app" // your Vercel frontend
-];
-
+// ✅ Flexible CORS setup
 app.use(cors({
   origin: (origin, callback) => {
-    if (!origin || allowedOrigins.includes(origin)) {
+    if (!origin) return callback(null, true); // allow requests like Postman or server-to-server
+    const allowed = [
+      "http://localhost:3000",        // local dev
+    ];
+    const vercelRegex = /\.vercel\.app$/; // allow any *.vercel.app domain
+
+    if (allowed.includes(origin) || vercelRegex.test(origin)) {
       callback(null, true);
     } else {
       callback(new Error("❌ Not allowed by CORS"));
@@ -53,4 +54,4 @@ mongoose.connect(process.env.MONGO_URI, {
 
 // PORT
 const PORT = process.env.PORT || 5000;
-app.listen(PORT, () => console.log(`🚀 Server running on port ${PORT}`));
+app.listen(PORT, () => console.log(🚀 Server running on port ${PORT}));
